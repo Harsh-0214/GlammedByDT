@@ -36,6 +36,7 @@ export default function About() {
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -bottom-6 -right-6 bg-black border border-pink-500/30 rounded-2xl px-5 py-4 shadow-2xl shadow-pink-500/10"
+              style={{ willChange: "transform" }}
             >
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center">
@@ -53,6 +54,7 @@ export default function About() {
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               className="absolute -top-4 -left-4 bg-pink-500/90 rounded-xl px-3 py-2 shadow-lg"
+              style={{ willChange: "transform" }}
             >
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (

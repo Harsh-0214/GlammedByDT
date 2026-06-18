@@ -106,11 +106,12 @@ export default function Services() {
                 delay: i * 0.08,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className={`relative group p-6 rounded-2xl border transition-all duration-300 cursor-default
+              className={`relative group p-6 rounded-2xl border cursor-default
                 ${service.popular
                   ? "border-pink-500/50 bg-gradient-to-br from-pink-500/15 to-purple-500/10"
-                  : "border-white/5 bg-white/[0.02] hover:border-pink-500/20 hover:bg-white/[0.04]"
+                  : "border-white/5 bg-white/[0.02]"
                 }`}
+              style={{ transition: "border-color 200ms ease-out, background-color 200ms ease-out" }}
             >
               {service.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-pink-500 text-white text-xs font-semibold">
@@ -127,7 +128,8 @@ export default function Services() {
                 <span className="text-pink-400 font-bold">{service.price}</span>
                 <a
                   href="#contact"
-                  className="text-xs text-white/30 hover:text-pink-400 transition-colors font-medium"
+                  className="text-xs text-white/30 font-medium"
+                  style={{ transition: "color 150ms ease-out" }}
                 >
                   Book →
                 </a>

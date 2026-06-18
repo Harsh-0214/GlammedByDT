@@ -9,6 +9,9 @@
   --pink-glow: rgba(240, 53, 107, 0.35);
   --font-display: "Cormorant Garamond", serif;
   --font-sans: "DM Sans", system-ui, sans-serif;
+  /* Strong ease-out for UI interactions — Emil Kowalski */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 @theme inline {
@@ -21,7 +24,7 @@
   --font-sans: var(--font-sans);
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
@@ -36,48 +39,56 @@ body {
   overflow-x: hidden;
 }
 
+/* Focus rings — visible for keyboard nav, hidden for mouse */
+:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 /* Elegant scrollbar */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: #080608; }
 ::-webkit-scrollbar-thumb { background: var(--pink); border-radius: 2px; }
 
+/* ── Button press feedback (Emil: scale on :active) ── */
+.btn-press {
+  transition: transform 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
+}
+.btn-press:active {
+  transform: scale(0.97);
+}
+
 /* ── Animations ── */
 @keyframes sparkle {
   0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
-  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+  50%       { opacity: 1; transform: scale(1) rotate(180deg); }
 }
 
-@keyframes float {
+@keyframes anim-float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-10px) rotate(2deg); }
-  66% { transform: translateY(-5px) rotate(-1deg); }
+  33%       { transform: translateY(-10px) rotate(2deg); }
+  66%       { transform: translateY(-5px) rotate(-1deg); }
 }
 
-@keyframes float-slow {
+@keyframes anim-float-slow {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-18px) rotate(3deg); }
+  50%       { transform: translateY(-18px) rotate(3deg); }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% center; }
+  0%   { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
 
 @keyframes pulse-glow {
   0%, 100% { box-shadow: 0 0 20px var(--pink-glow); }
-  50% { box-shadow: 0 0 45px var(--pink-glow), 0 0 70px rgba(240,53,107,0.15); }
+  50%       { box-shadow: 0 0 45px var(--pink-glow), 0 0 70px rgba(240,53,107,0.15); }
 }
 
-@keyframes petal-drift {
-  0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
-  10%  { opacity: 0.6; }
-  90%  { opacity: 0.3; }
-  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-}
-
-.sparkle { animation: sparkle 2s ease-in-out infinite; }
-.float   { animation: float 4s ease-in-out infinite; }
-.float-slow { animation: float-slow 6s ease-in-out infinite; }
+.sparkle     { animation: sparkle 2s ease-in-out infinite; }
+.anim-float  { animation: anim-float 4s ease-in-out infinite; }
+.anim-float-slow { animation: anim-float-slow 6s ease-in-out infinite; }
 
 .shimmer-text {
   background: linear-gradient(
@@ -96,7 +107,6 @@ body {
 }
 
 .gradient-border {
-  position: relative;
   background: linear-gradient(#080608, #080608) padding-box,
     linear-gradient(135deg, var(--pink), #9b59b6, var(--pink)) border-box;
   border: 1px solid transparent;
@@ -111,7 +121,28 @@ body {
   background-clip: text;
 }
 
-/* Display font utility */
 .font-display {
   font-family: var(--font-display);
+}
+
+/* ── prefers-reduced-motion — remove all motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .shimmer-text {
+    animation: none;
+    background: var(--pink-light);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
+/* ── Hover effects only on pointer devices ── */
+@media (hover: hover) and (pointer: fine) {
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
 }

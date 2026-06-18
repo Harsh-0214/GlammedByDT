@@ -136,7 +136,8 @@ export default function Contact() {
                 href="https://www.instagram.com/glammedbydt_"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl bg-pink-500 hover:bg-pink-400 text-white font-semibold transition-all duration-300 hover:shadow-2xl hover:shadow-pink-500/30 glow-pink mb-4"
+                className="btn-press w-full flex items-center justify-center gap-3 py-4 rounded-2xl bg-pink-500 text-white font-semibold glow-pink mb-4"
+                style={{ transition: "background-color 150ms ease-out, box-shadow 150ms ease-out", minHeight: "44px" }}
               >
                 <InstagramIcon className="w-5 h-5" />
                 Book via Instagram
