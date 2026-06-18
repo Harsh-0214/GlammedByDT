@@ -40,19 +40,19 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 group" aria-label="GlammedByDT — back to top">
-          <Image
-            src="/logo.jpeg"
-            alt="GlammedByDT logo"
-            width={36}
-            height={36}
-            className="rounded-full object-cover ring-1 ring-pink-500/40 group-hover:ring-pink-400/70"
-            style={{ transition: "box-shadow 200ms ease-out" }}
-          />
+          <div className="w-9 h-9 rounded-full overflow-hidden ring-1 ring-pink-500/40 group-hover:ring-pink-400/70 bg-black relative flex-shrink-0" style={{ transition: "box-shadow 200ms ease-out" }}>
+            <Image
+              src="/logo.jpeg"
+              alt="GlammedByDT logo"
+              fill
+              className="object-cover scale-[0.72]"
+            />
+          </div>
           <span
             className="text-white tracking-wider hidden sm:block"
             style={{ fontFamily: "var(--font-logo)", fontSize: "1.4rem", letterSpacing: "0.04em" }}
           >
-            GLAMMEDBY<span className="text-gradient">DT</span>
+            GLAMMED<span className="text-gradient" style={{ fontFamily: "var(--font-display)", fontWeight: 600, letterSpacing: "0.06em", fontSize: "0.88em" }}>BY DT</span>
           </span>
         </a>
 
