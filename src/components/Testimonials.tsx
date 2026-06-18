@@ -1,0 +1,99 @@
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { Star, Sparkles } from "lucide-react";
+
+const testimonials = [
+  {
+    name: "Aaliyah M.",
+    handle: "@aaliyah.nails",
+    text: "DT is genuinely the best nail tech I've ever been to. My sets always last 3+ weeks and the designs are literally art. Will never go anywhere else 💕",
+    rating: 5,
+    avatar: "A",
+  },
+  {
+    name: "Jordan K.",
+    handle: "@jordank_beauty",
+    text: "Got the most stunning chrome ombre for my birthday and I got SO many compliments. She listened to exactly what I wanted and delivered 10x better!",
+    rating: 5,
+    avatar: "J",
+  },
+  {
+    name: "Priya T.",
+    handle: "@priya.glam",
+    text: "The attention to detail is unreal. Every nail is perfect, symmetrical, and the polish lasts forever. Booking her was the best decision ✨",
+    rating: 5,
+    avatar: "P",
+  },
+];
+
+export default function Testimonials() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <section className="relative py-32 px-6 overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_40%_at_50%_50%,rgba(255,45,120,0.05),transparent)]" />
+
+      <div ref={ref} className="max-w-6xl mx-auto relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-16"
+        >
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Sparkles className="w-4 h-4 text-pink-400" />
+            <span className="text-pink-400 text-sm font-medium tracking-wide uppercase">
+              Reviews
+            </span>
+            <Sparkles className="w-4 h-4 text-pink-400" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            What Clients{" "}
+            <span className="text-gradient">Say</span>
+          </h2>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-5">
+          {testimonials.map((t, i) => (
+            <motion.div
+              key={t.name}
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{
+                duration: 0.6,
+                delay: i * 0.12,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-pink-500/20 transition-all duration-300"
+            >
+              <div className="flex gap-0.5 mb-4">
+                {[...Array(t.rating)].map((_, j) => (
+                  <Star
+                    key={j}
+                    className="w-4 h-4 text-pink-400"
+                    fill="currentColor"
+                  />
+                ))}
+              </div>
+              <p className="text-white/60 text-sm leading-relaxed mb-6">
+                &ldquo;{t.text}&rdquo;
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-white text-sm font-bold">
+                  {t.avatar}
+                </div>
+                <div>
+                  <div className="text-white text-sm font-semibold">{t.name}</div>
+                  <div className="text-white/30 text-xs">{t.handle}</div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
