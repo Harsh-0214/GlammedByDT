@@ -38,7 +38,7 @@ export default function Gallery() {
             </span>
             <Sparkles className="w-4 h-4 text-pink-400" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-white mb-4" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", fontWeight: 300, letterSpacing: "-0.01em" }}>
             The <span className="text-gradient">Work</span>
           </h2>
           <p className="text-white/40 text-base max-w-md mx-auto">

@@ -84,7 +84,7 @@ export default function Services() {
             </span>
             <Sparkles className="w-4 h-4 text-pink-400" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-white mb-4" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", fontWeight: 300, letterSpacing: "-0.01em" }}>
             Choose Your{" "}
             <span className="text-gradient">Glam</span>
           </h2>

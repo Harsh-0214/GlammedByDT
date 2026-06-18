@@ -76,9 +76,12 @@ export default function About() {
               </span>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-              Art You Can Wear on Your{" "}
-              <span className="text-gradient">Fingertips</span>
+            <h2
+              className="text-white leading-tight mb-6"
+              style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.4rem, 5vw, 3.6rem)", fontWeight: 300, letterSpacing: "-0.01em" }}
+            >
+              Art You Can Wear on{" "}
+              <em className="text-gradient not-italic" style={{ fontWeight: 600 }}>Your Fingertips</em>
             </h2>
 
             <p className="text-white/50 text-base leading-relaxed mb-6">
