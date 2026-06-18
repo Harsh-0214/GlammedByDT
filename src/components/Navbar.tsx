@@ -40,12 +40,12 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 group" aria-label="GlammedByDT — back to top">
-          <div className="w-9 h-9 rounded-full overflow-hidden ring-1 ring-pink-500/40 group-hover:ring-pink-400/70 bg-black relative flex-shrink-0" style={{ transition: "box-shadow 200ms ease-out" }}>
+          <div className="w-9 h-9 rounded-full overflow-hidden ring-1 ring-pink-500/40 group-hover:ring-pink-400/70 relative flex-shrink-0" style={{ transition: "box-shadow 200ms ease-out" }}>
             <Image
               src="/logo.jpeg"
               alt="GlammedByDT logo"
               fill
-              className="object-cover scale-[0.72]"
+              className="object-cover"
             />
           </div>
           <span className="hidden sm:flex flex-col items-end leading-none gap-0">
