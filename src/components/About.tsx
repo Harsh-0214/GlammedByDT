@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Sparkles, Heart, Star } from "lucide-react";
+import Image from "next/image";
 
 export default function About() {
   const ref = useRef(null);
@@ -22,11 +23,19 @@ export default function About() {
             className="relative"
           >
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden gradient-border">
-              {/* Decorative nail art image placeholder */}
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-900/40 via-black to-purple-900/30 flex flex-col items-center justify-center">
-                <div className="text-8xl mb-4">💅</div>
-                <p className="text-white/40 text-sm text-center px-8">
-                  Your nail art photos will shine here
+              {/* Background gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-900/40 via-black to-purple-900/30" />
+              {/* Logo centred in the placeholder */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+                <Image
+                  src="/logo.jpeg"
+                  alt="GlammedByDT"
+                  width={160}
+                  height={160}
+                  className="rounded-full object-cover ring-2 ring-pink-500/40 shadow-2xl shadow-pink-500/20"
+                />
+                <p className="text-white/30 text-xs text-center px-8 tracking-wider uppercase">
+                  Add your nail photos here
                 </p>
               </div>
             </div>

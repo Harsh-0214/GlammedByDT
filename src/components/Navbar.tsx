@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import InstagramIcon from "@/components/InstagramIcon";
 
 const EASE = [0.23, 1, 0.32, 1] as [number, number, number, number];
@@ -39,9 +40,19 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 group" aria-label="GlammedByDT — back to top">
-          <Sparkles className="w-5 h-5 text-pink-400" aria-hidden="true" />
-          <span className="text-white font-semibold tracking-wide text-lg">
-            Glammed<span className="text-gradient">ByDT</span>
+          <Image
+            src="/logo.jpeg"
+            alt="GlammedByDT logo"
+            width={36}
+            height={36}
+            className="rounded-full object-cover ring-1 ring-pink-500/40 group-hover:ring-pink-400/70"
+            style={{ transition: "box-shadow 200ms ease-out" }}
+          />
+          <span
+            className="text-white tracking-wider hidden sm:block"
+            style={{ fontFamily: "var(--font-logo)", fontSize: "1.4rem", letterSpacing: "0.04em" }}
+          >
+            GLAMMEDBY<span className="text-gradient">DT</span>
           </span>
         </a>
 
