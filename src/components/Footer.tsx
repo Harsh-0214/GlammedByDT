@@ -28,7 +28,7 @@ export default function Footer() {
           </div>
 
           {/* Nav */}
-          <div className="flex items-center gap-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             {["About", "Services", "Gallery", "Contact"].map((item) => (
               <a
                 key={item}

@@ -10,11 +10,11 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="relative py-32 px-6 overflow-hidden">
+    <section id="about" className="relative py-16 md:py-32 px-6 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(255,45,120,0.06),transparent)]" />
 
       <div ref={ref} className="max-w-6xl mx-auto relative z-10">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Left: Image placeholder with decorative frame */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -45,7 +45,7 @@ export default function About() {
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-6 -right-6 bg-black border border-pink-500/30 rounded-2xl px-5 py-4 shadow-2xl shadow-pink-500/10"
+              className="absolute -bottom-3 -right-3 sm:-bottom-6 sm:-right-6 bg-black border border-pink-500/30 rounded-2xl px-5 py-4 shadow-2xl shadow-pink-500/10"
               style={{ willChange: "transform" }}
             >
               <div className="flex items-center gap-3">
@@ -63,7 +63,7 @@ export default function About() {
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -top-4 -left-4 bg-pink-500/90 rounded-xl px-3 py-2 shadow-lg"
+              className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 bg-pink-500/90 rounded-xl px-3 py-2 shadow-lg"
               style={{ willChange: "transform" }}
             >
               <div className="flex items-center gap-1">
@@ -109,7 +109,7 @@ export default function About() {
               see why clients keep coming back for more.
             </p>
 
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-3 sm:gap-6">
               {[
                 { icon: "✨", label: "Nail Art", sub: "Custom designs" },
                 { icon: "💎", label: "Extensions", sub: "Acrylic & gel" },

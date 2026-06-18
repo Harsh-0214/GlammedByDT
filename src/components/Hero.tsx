@@ -101,7 +101,7 @@ export default function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="text-white/40 text-base max-w-sm mx-auto leading-loose mb-12"
+          className="text-white/40 text-base max-w-sm mx-auto leading-loose mb-8 sm:mb-12"
         >
           Premium nail artistry that turns your fingertips into masterpieces.
         </motion.p>
@@ -139,7 +139,7 @@ export default function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="mt-20 flex items-center justify-center gap-14"
+          className="mt-20 flex flex-wrap items-center justify-center gap-6 sm:gap-14"
         >
           {[
             { value: "500+", label: "Happy Clients" },
