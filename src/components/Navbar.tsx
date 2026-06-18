@@ -55,6 +55,7 @@ export default function Navbar() {
               alt="GlammedByDT logo"
               fill
               className="object-cover"
+              priority
             />
           </motion.div>
 

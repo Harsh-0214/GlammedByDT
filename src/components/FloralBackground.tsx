@@ -150,6 +150,7 @@ export default function FloralBackground() {
             left: f.left,
             transform: `rotate(${f.rotate}deg)`,
             animationDelay: f.animDelay,
+            willChange: "transform",
           }}
         >
           <f.Component size={f.size} opacity={f.opacity} />

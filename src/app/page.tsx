@@ -8,10 +8,12 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import FloralBackground from "@/components/FloralBackground";
 import SparkleEffect from "@/components/SparkleEffect";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function Home() {
   return (
     <main className="relative min-h-screen" style={{ background: "#080608" }}>
+      <LoadingScreen />
       <FloralBackground />
       <SparkleEffect />
       <Navbar />
