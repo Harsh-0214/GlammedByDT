@@ -56,7 +56,7 @@ export default function Hero() {
           className="mb-4 inline-flex flex-col items-end"
         >
           <span
-            className="text-white leading-none"
+            className="text-white leading-none text-glow"
             style={{ fontFamily: "var(--font-logo)", fontSize: "clamp(5rem, 16vw, 12rem)", letterSpacing: "0.05em" }}
           >
             GLAMMED
