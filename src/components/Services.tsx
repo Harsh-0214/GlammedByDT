@@ -66,7 +66,7 @@ export default function Services() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="services" className="relative py-32 px-6 overflow-hidden">
+    <section id="services" className="relative py-16 md:py-32 px-6 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(255,45,120,0.05),transparent)]" />
 
       <div ref={ref} className="max-w-6xl mx-auto relative z-10">
@@ -75,7 +75,7 @@ export default function Services() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <Sparkles className="w-4 h-4 text-pink-400" />

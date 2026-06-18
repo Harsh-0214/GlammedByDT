@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { motion, useInView, useMotionValue, useSpring, animate } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import InstagramIcon from "@/components/InstagramIcon";
@@ -21,18 +21,36 @@ const cards = [
 const row1 = cards.slice(0, 5);
 const row2 = cards.slice(5, 10);
 
-const CARD_W = 260;
-const CARD_H = 320;
 const CARD_GAP = 14;
+
+function useCardSize() {
+  const [size, setSize] = useState({ w: 260, h: 320 });
+  useEffect(() => {
+    function update() {
+      const w = window.innerWidth;
+      if (w < 480) setSize({ w: 200, h: 280 });
+      else if (w < 768) setSize({ w: 230, h: 300 });
+      else setSize({ w: 260, h: 320 });
+    }
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+  return size;
+}
 
 function CarouselRow({
   items,
   inView,
   rowOffset = 0,
+  cardW,
+  cardH,
 }: {
   items: typeof cards;
   inView: boolean;
   rowOffset?: number;
+  cardW: number;
+  cardH: number;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
@@ -41,10 +59,10 @@ function CarouselRow({
 
   const getConstraints = useCallback(() => {
     if (!trackRef.current) return { left: 0, right: 0 };
-    const totalWidth = items.length * (CARD_W + CARD_GAP) - CARD_GAP;
+    const totalWidth = items.length * (cardW + CARD_GAP) - CARD_GAP;
     const visibleWidth = trackRef.current.offsetWidth;
     return { left: -(totalWidth - visibleWidth), right: 0 };
-  }, [items.length]);
+  }, [items.length, cardW]);
 
   return (
     <div
@@ -65,7 +83,7 @@ function CarouselRow({
         onDragEnd={() => setIsDragging(false)}
         onPointerUp={() => {
           const currentX = x.get();
-          const snapped = Math.round(currentX / (CARD_W + CARD_GAP)) * (CARD_W + CARD_GAP);
+          const snapped = Math.round(currentX / (cardW + CARD_GAP)) * (cardW + CARD_GAP);
           const constraints = getConstraints();
           const clamped = Math.max(constraints.left, Math.min(0, snapped));
           animate(x, clamped, { type: "spring", stiffness: 380, damping: 38 });
@@ -79,7 +97,7 @@ function CarouselRow({
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: rowOffset + i * 0.06, duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
             className="flex-shrink-0 relative rounded-2xl overflow-hidden border border-white/5 group"
-            style={{ width: CARD_W, height: CARD_H }}
+            style={{ width: cardW, height: cardH }}
           >
             <div className={`absolute inset-0 bg-gradient-to-br ${card.bg}`} />
 
@@ -138,6 +156,7 @@ function CarouselRow({
 export default function Gallery() {
   const headerRef = useRef(null);
   const inView = useInView(headerRef, { once: true, margin: "-80px" });
+  const { w: CARD_W, h: CARD_H } = useCardSize();
 
   return (
     <section id="gallery" className="relative py-24 overflow-hidden">
@@ -170,8 +189,8 @@ export default function Gallery() {
 
       {/* Two-row carousel */}
       <div className="flex flex-col gap-3">
-        <CarouselRow items={row1} inView={inView} rowOffset={0} />
-        <CarouselRow items={row2} inView={inView} rowOffset={0.15} />
+        <CarouselRow items={row1} inView={inView} rowOffset={0} cardW={CARD_W} cardH={CARD_H} />
+        <CarouselRow items={row2} inView={inView} rowOffset={0.15} cardW={CARD_W} cardH={CARD_H} />
       </div>
 
       {/* Instagram CTA */}

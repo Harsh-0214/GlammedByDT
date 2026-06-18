@@ -10,7 +10,7 @@ export default function Contact() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="contact" className="relative py-32 px-6 overflow-hidden">
+    <section id="contact" className="relative py-16 md:py-32 px-6 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(255,45,120,0.1),transparent)]" />
 
       <div ref={ref} className="max-w-6xl mx-auto relative z-10">
@@ -18,7 +18,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <Sparkles className="w-4 h-4 text-pink-400" />
@@ -117,11 +117,11 @@ export default function Contact() {
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
-            <div className="h-full p-8 rounded-3xl border border-pink-500/20 bg-gradient-to-br from-pink-500/10 via-purple-500/5 to-transparent flex flex-col justify-center items-center text-center">
+            <div className="h-full p-6 sm:p-8 rounded-3xl border border-pink-500/20 bg-gradient-to-br from-pink-500/10 via-purple-500/5 to-transparent flex flex-col justify-center items-center text-center">
               {/* Decorative sparkles */}
-              <div className="text-5xl mb-6">💅✨</div>
+              <div className="text-4xl mb-4 sm:mb-6">💅✨</div>
 
-              <h3 className="text-white mb-4" style={{ fontFamily: "var(--font-display)", fontSize: "2.4rem", fontWeight: 300, lineHeight: 1.1 }}>
+              <h3 className="text-white mb-4" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 4vw, 2.4rem)", fontWeight: 300, lineHeight: 1.1 }}>
                 Your Dream Nails
                 <br />
                 <em className="text-gradient not-italic" style={{ fontWeight: 600 }}>Await</em>
