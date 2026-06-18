@@ -7,18 +7,21 @@ const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
+  display: "block",
 });
 
 const dmSans = DM_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
+  display: "block",
 });
 
 const bebasNeue = Bebas_Neue({
   variable: "--font-logo",
   subsets: ["latin"],
   weight: "400",
+  display: "block",
 });
 
 export const metadata: Metadata = {

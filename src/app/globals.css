@@ -87,6 +87,11 @@ body {
   50%       { box-shadow: 0 0 45px var(--pink-glow), 0 0 70px rgba(240,53,107,0.15); }
 }
 
+@keyframes loading-bar {
+  from { width: 0% }
+  to   { width: 100% }
+}
+
 @keyframes text-glow-pulse {
   0%, 100% {
     text-shadow:
