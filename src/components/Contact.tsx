@@ -27,7 +27,7 @@ export default function Contact() {
             </span>
             <Sparkles className="w-4 h-4 text-pink-400" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-white mb-4" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", fontWeight: 300, letterSpacing: "-0.01em" }}>
             Ready to Get{" "}
             <span className="text-gradient">Glammed?</span>
           </h2>
@@ -121,10 +121,10 @@ export default function Contact() {
               {/* Decorative sparkles */}
               <div className="text-5xl mb-6">💅✨</div>
 
-              <h3 className="text-3xl font-bold text-white mb-4">
+              <h3 className="text-white mb-4" style={{ fontFamily: "var(--font-display)", fontSize: "2.4rem", fontWeight: 300, lineHeight: 1.1 }}>
                 Your Dream Nails
                 <br />
-                <span className="text-gradient">Await</span>
+                <em className="text-gradient not-italic" style={{ fontWeight: 600 }}>Await</em>
               </h3>
 
               <p className="text-white/40 text-sm leading-relaxed mb-8 max-w-xs">
