@@ -36,12 +36,12 @@ export default function Hero() {
           animate="visible"
           className="flex justify-center mb-6"
         >
-          <div className="relative w-[100px] h-[100px] rounded-full overflow-hidden ring-2 ring-pink-500/50 shadow-2xl shadow-pink-500/20 anim-float-slow bg-black">
+          <div className="relative w-[100px] h-[100px] rounded-full overflow-hidden ring-2 ring-pink-500/50 shadow-2xl shadow-pink-500/20 anim-float-slow">
             <Image
               src="/logo.jpeg"
               alt="GlammedByDT"
               fill
-              className="object-cover scale-[0.72]"
+              className="object-cover"
               priority
             />
           </div>
