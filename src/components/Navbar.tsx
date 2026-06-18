@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
-import InstagramIcon from "@/components/InstagramIcon";
 
 const EASE = [0.23, 1, 0.32, 1] as [number, number, number, number];
 
@@ -20,7 +19,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -38,29 +37,45 @@ export default function Navbar() {
       style={{ transition: "background-color 400ms ease-out, border-color 400ms ease-out" }}
       aria-label="Main navigation"
     >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 group" aria-label="GlammedByDT — back to top">
-          <div className="w-9 h-9 rounded-full overflow-hidden ring-1 ring-pink-500/40 group-hover:ring-pink-400/70 relative flex-shrink-0" style={{ transition: "box-shadow 200ms ease-out" }}>
+      <motion.div
+        animate={{ paddingTop: scrolled ? "1rem" : "1.25rem", paddingBottom: scrolled ? "1rem" : "1.25rem" }}
+        transition={{ duration: 0.4, ease: EASE }}
+        className="max-w-6xl mx-auto px-6 flex items-center justify-between"
+      >
+        <a href="#" className="flex items-center gap-3 group" aria-label="GlammedByDT — back to top">
+          {/* Logo — animates between 64px (top) and 36px (scrolled) */}
+          <motion.div
+            animate={{ width: scrolled ? 36 : 64, height: scrolled ? 36 : 64 }}
+            transition={{ duration: 0.45, ease: EASE }}
+            className="rounded-full overflow-hidden ring-1 ring-pink-500/40 group-hover:ring-pink-400/70 relative flex-shrink-0"
+            style={{ transition: "box-shadow 200ms ease-out" }}
+          >
             <Image
               src="/logo.jpeg"
               alt="GlammedByDT logo"
               fill
               className="object-cover"
             />
-          </div>
+          </motion.div>
+
+          {/* Brand name — font sizes animate too */}
           <span className="hidden sm:flex flex-col items-end leading-none gap-0">
-            <span
+            <motion.span
+              animate={{ fontSize: scrolled ? "1.35rem" : "1.7rem" }}
+              transition={{ duration: 0.45, ease: EASE }}
               className="text-white"
-              style={{ fontFamily: "var(--font-logo)", fontSize: "1.35rem", letterSpacing: "0.05em" }}
+              style={{ fontFamily: "var(--font-logo)", letterSpacing: "0.05em" }}
             >
               GLAMMED
-            </span>
-            <span
+            </motion.span>
+            <motion.span
+              animate={{ fontSize: scrolled ? "0.6rem" : "0.78rem" }}
+              transition={{ duration: 0.45, ease: EASE }}
               className="text-gradient italic"
-              style={{ fontFamily: "var(--font-display)", fontWeight: 400, fontSize: "0.65rem", letterSpacing: "0.28em", marginTop: "-1px" }}
+              style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.28em", marginTop: "-1px" }}
             >
               by DT
-            </span>
+            </motion.span>
           </span>
         </a>
 
@@ -73,7 +88,6 @@ export default function Navbar() {
               className="text-white/60 text-sm font-medium tracking-wide relative group"
               style={{ transition: "color 200ms ease-out" }}
             >
-              {/* Hover only on pointer devices */}
               <span className="[@media(hover:hover)_and_(pointer:fine)]:group-hover:text-white">
                 {link.label}
               </span>
@@ -98,7 +112,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile Menu Toggle — aria-label for screen readers */}
+        {/* Mobile Menu Toggle */}
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden text-white p-2 rounded-lg"
@@ -111,9 +125,9 @@ export default function Navbar() {
             : <Menu className="w-5 h-5" aria-hidden="true" />
           }
         </button>
-      </div>
+      </motion.div>
 
-      {/* Mobile Menu — ease-out enter, faster exit */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {open && (
           <motion.div

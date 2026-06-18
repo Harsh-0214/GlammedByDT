@@ -18,7 +18,7 @@ const fadeUp = {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-dvh flex flex-col items-center justify-center overflow-hidden px-6 pt-24">
+    <section className="relative min-h-dvh flex flex-col items-center justify-center overflow-hidden px-6 pt-32">
       {/* Glows */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_50%_-5%,rgba(240,53,107,0.18),transparent)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_40%_at_80%_75%,rgba(155,89,182,0.09),transparent)]" />
