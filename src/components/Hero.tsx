@@ -53,15 +53,20 @@ export default function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="leading-[0.9] mb-4"
-          style={{
-            fontFamily: "var(--font-logo)",
-            fontSize: "clamp(5rem, 16vw, 12rem)",
-            letterSpacing: "0.05em",
-          }}
+          className="mb-4 inline-flex flex-col items-end"
         >
-          <span className="text-white">GLAMMED</span>
-          <span className="shimmer-text" style={{ fontFamily: "var(--font-display)", fontWeight: 600, letterSpacing: "0.08em", fontSize: "0.72em", verticalAlign: "middle" }}>BY DT</span>
+          <span
+            className="text-white leading-none"
+            style={{ fontFamily: "var(--font-logo)", fontSize: "clamp(5rem, 16vw, 12rem)", letterSpacing: "0.05em" }}
+          >
+            GLAMMED
+          </span>
+          <span
+            className="shimmer-text italic leading-none"
+            style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.22em", fontSize: "clamp(1.1rem, 3vw, 2.4rem)", marginTop: "-0.15em" }}
+          >
+            by DT
+          </span>
         </motion.h1>
 
         {/* Cormorant italic subtitle */}

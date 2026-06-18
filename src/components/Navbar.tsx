@@ -48,11 +48,19 @@ export default function Navbar() {
               className="object-cover scale-[0.72]"
             />
           </div>
-          <span
-            className="text-white tracking-wider hidden sm:block"
-            style={{ fontFamily: "var(--font-logo)", fontSize: "1.4rem", letterSpacing: "0.04em" }}
-          >
-            GLAMMED<span className="text-gradient" style={{ fontFamily: "var(--font-display)", fontWeight: 600, letterSpacing: "0.06em", fontSize: "0.88em" }}>BY DT</span>
+          <span className="hidden sm:flex flex-col items-end leading-none gap-0">
+            <span
+              className="text-white"
+              style={{ fontFamily: "var(--font-logo)", fontSize: "1.35rem", letterSpacing: "0.05em" }}
+            >
+              GLAMMED
+            </span>
+            <span
+              className="text-gradient italic"
+              style={{ fontFamily: "var(--font-display)", fontWeight: 400, fontSize: "0.65rem", letterSpacing: "0.28em", marginTop: "-1px" }}
+            >
+              by DT
+            </span>
           </span>
         </a>
 
