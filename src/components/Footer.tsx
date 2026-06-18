@@ -15,7 +15,7 @@ export default function Footer() {
               className="text-white tracking-wider"
               style={{ fontFamily: "var(--font-logo)", fontSize: "1.4rem", letterSpacing: "0.04em" }}
             >
-              GLAMMEDBY<span className="text-gradient">DT</span>
+              GLAMMED<span className="text-gradient" style={{ fontFamily: "var(--font-display)", fontWeight: 600, letterSpacing: "0.06em", fontSize: "0.88em" }}>BY DT</span>
             </span>
           </div>
 

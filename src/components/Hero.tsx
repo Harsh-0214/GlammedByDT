@@ -36,13 +36,12 @@ export default function Hero() {
           animate="visible"
           className="flex justify-center mb-6"
         >
-          <div className="relative">
+          <div className="relative w-[100px] h-[100px] rounded-full overflow-hidden ring-2 ring-pink-500/50 shadow-2xl shadow-pink-500/20 anim-float-slow bg-black">
             <Image
               src="/logo.jpeg"
               alt="GlammedByDT"
-              width={100}
-              height={100}
-              className="rounded-full object-cover ring-2 ring-pink-500/50 shadow-2xl shadow-pink-500/20 anim-float-slow"
+              fill
+              className="object-cover scale-[0.72]"
               priority
             />
           </div>
@@ -61,8 +60,8 @@ export default function Hero() {
             letterSpacing: "0.05em",
           }}
         >
-          <span className="text-white">GLAMMEDBY</span>
-          <span className="shimmer-text">DT</span>
+          <span className="text-white">GLAMMED</span>
+          <span className="shimmer-text" style={{ fontFamily: "var(--font-display)", fontWeight: 600, letterSpacing: "0.08em", fontSize: "0.72em", verticalAlign: "middle" }}>BY DT</span>
         </motion.h1>
 
         {/* Cormorant italic subtitle */}
