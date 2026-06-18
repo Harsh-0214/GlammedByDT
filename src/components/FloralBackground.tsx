@@ -107,31 +107,31 @@ const florals: Array<{
   animClass: string;
 }> = [
   // Top area
-  { Component: Rose,   top: "2%",  left: "3%",  size: 180, opacity: 0.07, rotate: -20, animDelay: "0s",   animClass: "float-slow" },
-  { Component: Cherry, top: "5%",  left: "75%", size: 120, opacity: 0.10, rotate: 15,  animDelay: "1s",   animClass: "float" },
-  { Component: Cherry, top: "8%",  left: "88%", size: 80,  opacity: 0.07, rotate: -5,  animDelay: "2s",   animClass: "float-slow" },
-  { Component: Leaf,   top: "12%", left: "92%", size: 70,  opacity: 0.09, rotate: 40,  animDelay: "0.5s", animClass: "float" },
+  { Component: Rose,   top: "2%",  left: "3%",  size: 180, opacity: 0.07, rotate: -20, animDelay: "0s",   animClass: "anim-float-slow" },
+  { Component: Cherry, top: "5%",  left: "75%", size: 120, opacity: 0.10, rotate: 15,  animDelay: "1s",   animClass: "anim-float" },
+  { Component: Cherry, top: "8%",  left: "88%", size: 80,  opacity: 0.07, rotate: -5,  animDelay: "2s",   animClass: "anim-float-slow" },
+  { Component: Leaf,   top: "12%", left: "92%", size: 70,  opacity: 0.09, rotate: 40,  animDelay: "0.5s", animClass: "anim-float" },
 
   // Mid-left
-  { Component: Rose,   top: "30%", left: "-2%", size: 140, opacity: 0.06, rotate: 10,  animDelay: "1.5s", animClass: "float-slow" },
-  { Component: Cherry, top: "40%", left: "5%",  size: 90,  opacity: 0.09, rotate: -30, animDelay: "0.8s", animClass: "float" },
-  { Component: Leaf,   top: "45%", left: "0%",  size: 65,  opacity: 0.08, rotate: 60,  animDelay: "2.5s", animClass: "float-slow" },
+  { Component: Rose,   top: "30%", left: "-2%", size: 140, opacity: 0.06, rotate: 10,  animDelay: "1.5s", animClass: "anim-float-slow" },
+  { Component: Cherry, top: "40%", left: "5%",  size: 90,  opacity: 0.09, rotate: -30, animDelay: "0.8s", animClass: "anim-float" },
+  { Component: Leaf,   top: "45%", left: "0%",  size: 65,  opacity: 0.08, rotate: 60,  animDelay: "2.5s", animClass: "anim-float-slow" },
 
   // Mid-right
-  { Component: Rose,   top: "38%", left: "94%", size: 160, opacity: 0.07, rotate: -15, animDelay: "2s",   animClass: "float-slow" },
-  { Component: Cherry, top: "52%", left: "90%", size: 100, opacity: 0.09, rotate: 20,  animDelay: "1.2s", animClass: "float" },
-  { Component: Leaf,   top: "60%", left: "96%", size: 55,  opacity: 0.07, rotate: -45, animDelay: "0.3s", animClass: "float-slow" },
+  { Component: Rose,   top: "38%", left: "94%", size: 160, opacity: 0.07, rotate: -15, animDelay: "2s",   animClass: "anim-float-slow" },
+  { Component: Cherry, top: "52%", left: "90%", size: 100, opacity: 0.09, rotate: 20,  animDelay: "1.2s", animClass: "anim-float" },
+  { Component: Leaf,   top: "60%", left: "96%", size: 55,  opacity: 0.07, rotate: -45, animDelay: "0.3s", animClass: "anim-float-slow" },
 
   // Lower area
-  { Component: Cherry, top: "70%", left: "2%",  size: 110, opacity: 0.08, rotate: 5,   animDelay: "1.8s", animClass: "float" },
-  { Component: Rose,   top: "78%", left: "85%", size: 150, opacity: 0.06, rotate: 25,  animDelay: "0.6s", animClass: "float-slow" },
-  { Component: Leaf,   top: "82%", left: "10%", size: 70,  opacity: 0.08, rotate: -20, animDelay: "1.4s", animClass: "float" },
-  { Component: Cherry, top: "88%", left: "60%", size: 85,  opacity: 0.07, rotate: -10, animDelay: "2.2s", animClass: "float-slow" },
-  { Component: Rose,   top: "92%", left: "20%", size: 130, opacity: 0.06, rotate: 30,  animDelay: "0.9s", animClass: "float" },
+  { Component: Cherry, top: "70%", left: "2%",  size: 110, opacity: 0.08, rotate: 5,   animDelay: "1.8s", animClass: "anim-float" },
+  { Component: Rose,   top: "78%", left: "85%", size: 150, opacity: 0.06, rotate: 25,  animDelay: "0.6s", animClass: "anim-float-slow" },
+  { Component: Leaf,   top: "82%", left: "10%", size: 70,  opacity: 0.08, rotate: -20, animDelay: "1.4s", animClass: "anim-float" },
+  { Component: Cherry, top: "88%", left: "60%", size: 85,  opacity: 0.07, rotate: -10, animDelay: "2.2s", animClass: "anim-float-slow" },
+  { Component: Rose,   top: "92%", left: "20%", size: 130, opacity: 0.06, rotate: 30,  animDelay: "0.9s", animClass: "anim-float" },
 
   // Scattered small accents
-  { Component: Cherry, top: "22%", left: "50%", size: 60,  opacity: 0.05, rotate: -35, animDelay: "3s",   animClass: "float" },
-  { Component: Leaf,   top: "65%", left: "45%", size: 50,  opacity: 0.05, rotate: 55,  animDelay: "1.7s", animClass: "float-slow" },
+  { Component: Cherry, top: "22%", left: "50%", size: 60,  opacity: 0.05, rotate: -35, animDelay: "3s",   animClass: "anim-float" },
+  { Component: Leaf,   top: "65%", left: "45%", size: 50,  opacity: 0.05, rotate: 55,  animDelay: "1.7s", animClass: "anim-float-slow" },
 ];
 
 export default function FloralBackground() {

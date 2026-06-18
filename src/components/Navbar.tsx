@@ -5,11 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sparkles } from "lucide-react";
 import InstagramIcon from "@/components/InstagramIcon";
 
+const EASE = [0.23, 1, 0.32, 1] as [number, number, number, number];
+
 const links = [
-  { label: "About", href: "#about" },
+  { label: "About",    href: "#about" },
   { label: "Services", href: "#services" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
+  { label: "Gallery",  href: "#gallery" },
+  { label: "Contact",  href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -18,7 +20,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -26,16 +28,18 @@ export default function Navbar() {
     <motion.nav
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      transition={{ duration: 0.55, ease: EASE }}
+      className={`fixed top-0 left-0 right-0 z-50 ${
         scrolled
           ? "bg-black/80 backdrop-blur-xl border-b border-white/5"
           : "bg-transparent"
       }`}
+      style={{ transition: "background-color 400ms ease-out, border-color 400ms ease-out" }}
+      aria-label="Main navigation"
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 group">
-          <Sparkles className="w-5 h-5 text-pink-400 group-hover:text-pink-300 transition-colors" />
+        <a href="#" className="flex items-center gap-2 group" aria-label="GlammedByDT — back to top">
+          <Sparkles className="w-5 h-5 text-pink-400" aria-hidden="true" />
           <span className="text-white font-semibold tracking-wide text-lg">
             Glammed<span className="text-gradient">ByDT</span>
           </span>
@@ -47,54 +51,77 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-white/60 hover:text-white text-sm font-medium tracking-wide transition-colors duration-200 relative group"
+              className="text-white/60 text-sm font-medium tracking-wide relative group"
+              style={{ transition: "color 200ms ease-out" }}
             >
-              {link.label}
-              <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-pink-500 group-hover:w-full transition-all duration-300" />
+              {/* Hover only on pointer devices */}
+              <span className="[@media(hover:hover)_and_(pointer:fine)]:group-hover:text-white">
+                {link.label}
+              </span>
+              <span
+                className="absolute -bottom-0.5 left-0 w-0 h-px bg-pink-500 [@media(hover:hover)_and_(pointer:fine)]:group-hover:w-full"
+                style={{ transition: "width 250ms var(--ease-out)" }}
+                aria-hidden="true"
+              />
             </a>
           ))}
           <a
             href="#contact"
-            className="px-5 py-2 rounded-full bg-pink-500 hover:bg-pink-400 text-white text-sm font-medium transition-all duration-200 hover:shadow-lg hover:shadow-pink-500/30"
+            className="btn-press px-5 py-2 rounded-full bg-pink-500 text-white text-sm font-medium"
+            style={{
+              minHeight: "44px",
+              display: "flex",
+              alignItems: "center",
+              transition: "background-color 150ms ease-out, box-shadow 150ms ease-out",
+            }}
           >
             Book Now
           </a>
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Menu Toggle — aria-label for screen readers */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden text-white p-1"
+          className="md:hidden text-white p-2 rounded-lg"
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={open}
+          style={{ minHeight: "44px", minWidth: "44px" }}
         >
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          {open
+            ? <X className="w-5 h-5" aria-hidden="true" />
+            : <Menu className="w-5 h-5" aria-hidden="true" />
+          }
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu — ease-out enter, faster exit */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/5"
+            animate={{ opacity: 1, height: "auto", transition: { duration: 0.28, ease: EASE } }}
+            exit={{ opacity: 0, height: 0, transition: { duration: 0.18, ease: [0.4, 0, 1, 1] } }}
+            className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/5 overflow-hidden"
           >
             <div className="px-6 py-6 flex flex-col gap-5">
-              {links.map((link) => (
-                <a
+              {links.map((link, i) => (
+                <motion.a
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="text-white/70 hover:text-white text-base font-medium transition-colors"
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0, transition: { delay: i * 0.05, duration: 0.2, ease: EASE } }}
+                  className="text-white/70 text-base font-medium"
+                  style={{ transition: "color 150ms ease-out", minHeight: "44px", display: "flex", alignItems: "center" }}
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}
-                className="mt-2 px-5 py-3 rounded-full bg-pink-500 text-white text-sm font-medium text-center"
+                className="btn-press mt-2 px-5 py-3 rounded-full bg-pink-500 text-white text-sm font-medium text-center"
+                style={{ minHeight: "44px" }}
               >
                 Book Now
               </a>
