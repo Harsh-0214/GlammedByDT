@@ -9,10 +9,13 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-pink-400" />
-            <span className="text-white font-semibold">
-              Glammed<span className="text-gradient">ByDT</span>
+          <div className="flex items-center gap-1.5">
+            <Sparkles className="w-4 h-4 text-pink-400" aria-hidden="true" />
+            <span
+              className="text-white tracking-wider"
+              style={{ fontFamily: "var(--font-logo)", fontSize: "1.4rem", letterSpacing: "0.04em" }}
+            >
+              GLAMMEDBY<span className="text-gradient">DT</span>
             </span>
           </div>
 

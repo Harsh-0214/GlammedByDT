@@ -9,6 +9,7 @@
   --pink-glow: rgba(240, 53, 107, 0.35);
   --font-display: "Cormorant Garamond", serif;
   --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-logo: "Bebas Neue", "Arial Narrow", sans-serif;
   /* Strong ease-out for UI interactions — Emil Kowalski */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
