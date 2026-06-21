@@ -6,20 +6,24 @@ import { Sparkles } from "lucide-react";
 import InstagramIcon from "@/components/InstagramIcon";
 
 const cards = [
-  { id: 1,  label: "French Ombre",     tag: "Ombre",      bg: "from-pink-950 via-rose-900 to-pink-950",           emoji: "💅" },
-  { id: 2,  label: "Chrome Set",       tag: "Chrome",     bg: "from-slate-900 via-purple-950 to-pink-950",         emoji: "✨" },
-  { id: 3,  label: "Butterfly Art",    tag: "Nail Art",   bg: "from-pink-900 via-fuchsia-950 to-purple-950",       emoji: "🦋" },
-  { id: 4,  label: "Floral Design",    tag: "Nail Art",   bg: "from-rose-950 via-pink-900 to-rose-950",            emoji: "🌸" },
-  { id: 5,  label: "Crystal Gems",     tag: "3D Art",     bg: "from-indigo-950 via-purple-900 to-pink-950",        emoji: "💎" },
-  { id: 6,  label: "Glitter Tips",     tag: "Glitter",    bg: "from-pink-950 via-fuchsia-900 to-pink-950",         emoji: "🌟" },
-  { id: 7,  label: "Nude & Gold",      tag: "Minimalist", bg: "from-amber-950 via-yellow-950 to-pink-950",         emoji: "👑" },
-  { id: 8,  label: "Black Lace",       tag: "Nail Art",   bg: "from-zinc-950 via-slate-900 to-purple-950",         emoji: "🖤" },
-  { id: 9,  label: "Pastel Dream",     tag: "Pastel",     bg: "from-pink-900 via-rose-800 to-fuchsia-950",         emoji: "🎀" },
-  { id: 10, label: "Marble Effect",    tag: "Abstract",   bg: "from-slate-900 via-zinc-800 to-pink-950",           emoji: "🌀" },
+  { id: 1,  label: "French Ombre",     tag: "Ombre",      img: "/1.jpeg" },
+  { id: 2,  label: "Chrome Set",       tag: "Chrome",     img: "/2.jpeg" },
+  { id: 3,  label: "Butterfly Art",    tag: "Nail Art",   img: "/3.jpeg" },
+  { id: 4,  label: "Floral Design",    tag: "Nail Art",   img: "/4.jpeg" },
+  { id: 5,  label: "Crystal Gems",     tag: "3D Art",     img: "/5.jpeg" },
+  { id: 6,  label: "Glitter Tips",     tag: "Glitter",    img: "/6.jpeg" },
+  { id: 7,  label: "Nude & Gold",      tag: "Minimalist", img: "/7.jpeg" },
+  { id: 8,  label: "Black Lace",       tag: "Nail Art",   img: "/8.jpeg" },
+  { id: 9,  label: "Pastel Dream",     tag: "Pastel",     img: "/9.jpeg" },
+  { id: 10, label: "Marble Effect",    tag: "Abstract",   img: "/10.jpeg" },
+  { id: 11, label: "Glam Set",         tag: "Glam",       img: "/12.jpeg" },
+  { id: 12, label: "Bold Look",        tag: "Bold",       img: "/13.jpeg" },
+  { id: 13, label: "Soft Glam",        tag: "Soft",       img: "/14.jpeg" },
+  { id: 14, label: "Statement Set",    tag: "Statement",  img: "/15.jpeg" },
 ];
 
-const row1 = cards.slice(0, 5);
-const row2 = cards.slice(5, 10);
+const row1 = cards.slice(0, 7);
+const row2 = cards.slice(7, 14);
 
 const CARD_GAP = 14;
 
@@ -99,43 +103,27 @@ function CarouselRow({
             className="flex-shrink-0 relative rounded-2xl overflow-hidden border border-white/5 group"
             style={{ width: cardW, height: cardH }}
           >
-            <div className={`absolute inset-0 bg-gradient-to-br ${card.bg}`} />
-
-            <div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100"
-              style={{
-                background: "radial-gradient(ellipse at center, rgba(240,53,107,0.13), transparent 70%)",
-                transition: "opacity 300ms ease-out",
-              }}
+            <img
+              src={card.img}
+              alt={card.label}
+              className="absolute inset-0 w-full h-full object-cover"
+              draggable={false}
             />
+
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
 
             <div className="absolute inset-0 flex flex-col justify-between p-5">
               <div className="self-start px-3 py-1 rounded-full bg-black/40 border border-white/10 backdrop-blur-sm">
                 <span className="text-white/60 text-xs tracking-widest uppercase">{card.tag}</span>
               </div>
 
-              <div className="flex flex-col items-center gap-2">
-                <span
-                  className="text-5xl"
-                  style={{
-                    display: "block",
-                    transition: "transform 300ms ease-out",
-                    transform: isDragging ? "scale(1)" : undefined,
-                  }}
+              <div className="text-center">
+                <p
+                  className="text-white font-medium drop-shadow-md"
+                  style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: "1.1rem" }}
                 >
-                  {card.emoji}
-                </span>
-                <div className="text-center">
-                  <p
-                    className="text-white/90 font-medium"
-                    style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: "1.1rem" }}
-                  >
-                    {card.label}
-                  </p>
-                  <p className="text-white/30 text-[10px] mt-0.5 tracking-widest uppercase">
-                    Replace with your photo
-                  </p>
-                </div>
+                  {card.label}
+                </p>
               </div>
             </div>
 

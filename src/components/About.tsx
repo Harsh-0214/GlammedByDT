@@ -23,22 +23,13 @@ export default function About() {
             className="relative"
           >
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden gradient-border">
-              {/* Background gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-900/40 via-black to-purple-900/30" />
-              {/* Logo centred in the placeholder */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-                <div className="relative w-40 h-40 rounded-full overflow-hidden ring-2 ring-pink-500/40 shadow-2xl shadow-pink-500/20">
-                  <Image
-                    src="/logo.jpeg"
-                    alt="GlammedByDT"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <p className="text-white/30 text-xs text-center px-8 tracking-wider uppercase">
-                  Add your nail photos here
-                </p>
-              </div>
+              <Image
+                src="/11.jpeg"
+                alt="GlammedByDT nail art"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             </div>
 
             {/* Floating badge */}
