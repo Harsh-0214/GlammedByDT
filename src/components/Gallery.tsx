@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
-import { motion, useInView, useMotionValue, useSpring, animate } from "framer-motion";
+import { useRef, useState, useEffect, useCallback, useMemo } from "react";
+import { motion, useInView, useMotionValue } from "framer-motion";
 import { Sparkles, X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import InstagramIcon from "@/components/InstagramIcon";
@@ -15,6 +15,7 @@ const row1 = ALL_PHOTOS.slice(0, 29);
 const row2 = ALL_PHOTOS.slice(29, 57);
 
 const CARD_GAP = 14;
+const SPEED = 0.5; // px per frame
 
 function useCardSize() {
   const [size, setSize] = useState({ w: 220, h: 280 });
@@ -64,7 +65,6 @@ function Lightbox({
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
       onClick={onClose}
     >
-      {/* Close */}
       <button
         className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
         onClick={onClose}
@@ -73,7 +73,6 @@ function Lightbox({
         <X className="w-5 h-5" />
       </button>
 
-      {/* Prev */}
       <button
         className="absolute left-3 sm:left-6 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
         onClick={(e) => { e.stopPropagation(); onPrev(); }}
@@ -82,7 +81,6 @@ function Lightbox({
         <ChevronLeft className="w-6 h-6" />
       </button>
 
-      {/* Image */}
       <motion.div
         key={index}
         initial={{ opacity: 0, scale: 0.95 }}
@@ -101,12 +99,10 @@ function Lightbox({
         />
       </motion.div>
 
-      {/* Counter */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/40 text-xs tracking-widest">
         {index + 1} / {photos.length}
       </div>
 
-      {/* Next */}
       <button
         className="absolute right-3 sm:right-6 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
         onClick={(e) => { e.stopPropagation(); onNext(); }}
@@ -124,6 +120,7 @@ function CarouselRow({
   rowOffset = 0,
   cardW,
   cardH,
+  scrollDirection,
   onCardClick,
 }: {
   items: typeof ALL_PHOTOS;
@@ -131,59 +128,90 @@ function CarouselRow({
   rowOffset?: number;
   cardW: number;
   cardH: number;
-  onCardClick: (id: number) => void;
+  scrollDirection: 1 | -1;
+  onCardClick: (globalIndex: number) => void;
 }) {
-  const trackRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 380, damping: 38 });
+  const xRef = useRef(0);
+  const isDraggingRef = useRef(false);
   const [isDragging, setIsDragging] = useState(false);
-  const dragStartX = useRef(0);
+  const pointerDownX = useRef(0);
 
-  const getConstraints = useCallback(() => {
-    if (!trackRef.current) return { left: 0, right: 0 };
-    const totalWidth = items.length * (cardW + CARD_GAP) - CARD_GAP;
-    const visibleWidth = trackRef.current.offsetWidth;
-    return { left: -(totalWidth - visibleWidth), right: 0 };
-  }, [items.length, cardW]);
+  // Duplicate for seamless loop
+  const loopedItems = useMemo(() => [...items, ...items, ...items], [items]);
+  const singleWidth = useMemo(
+    () => items.length * (cardW + CARD_GAP),
+    [items.length, cardW]
+  );
+
+  // Start in the middle copy so both directions have room
+  useEffect(() => {
+    xRef.current = -singleWidth;
+    x.set(-singleWidth);
+  }, [singleWidth, x]);
+
+  // Auto-scroll RAF loop
+  useEffect(() => {
+    let rafId: number;
+    function tick() {
+      if (!isDraggingRef.current) {
+        xRef.current += scrollDirection * SPEED;
+        // Wrap: keep position within the middle copy
+        if (xRef.current < -singleWidth * 2) xRef.current += singleWidth;
+        if (xRef.current > 0) xRef.current -= singleWidth;
+        x.set(xRef.current);
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [x, singleWidth, scrollDirection]);
 
   return (
     <div
-      ref={trackRef}
       className="relative overflow-hidden cursor-grab active:cursor-grabbing"
       style={{ touchAction: "pan-y" }}
     >
-      <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-r from-[#080608] to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-l from-[#080608] to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-r from-[#080608] to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-l from-[#080608] to-transparent" />
 
       <motion.div
         drag="x"
-        dragConstraints={getConstraints()}
-        dragElastic={0.07}
-        style={{ x: springX }}
+        dragConstraints={{ left: -singleWidth * 2.5, right: singleWidth * 0.5 }}
+        dragElastic={0}
+        style={{ x }}
         onDragStart={(_, info) => {
+          isDraggingRef.current = true;
           setIsDragging(true);
-          dragStartX.current = info.point.x;
+          pointerDownX.current = info.point.x;
         }}
-        onDragEnd={() => {
+        onDragEnd={(_, info) => {
+          // Sync xRef with where framer-motion left x
+          let cur = x.get();
+          while (cur < -singleWidth * 2) cur += singleWidth;
+          while (cur > 0) cur -= singleWidth;
+          xRef.current = cur;
+          x.set(cur);
+          isDraggingRef.current = false;
           setIsDragging(false);
-          const currentX = x.get();
-          const snapped = Math.round(currentX / (cardW + CARD_GAP)) * (cardW + CARD_GAP);
-          const constraints = getConstraints();
-          const clamped = Math.max(constraints.left, Math.min(0, snapped));
-          animate(x, clamped, { type: "spring", stiffness: 380, damping: 38 });
+          pointerDownX.current = info.point.x;
         }}
         className="flex gap-[14px] pl-6 pr-6 select-none"
       >
-        {items.map((photo, i) => (
+        {loopedItems.map((photo, i) => (
           <motion.div
-            key={photo.id}
+            key={`${photo.id}-${i}`}
             initial={{ opacity: 0, scale: 0.93 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: rowOffset + i * 0.03, duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
+            transition={{ delay: rowOffset + (i % items.length) * 0.02, duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
             className="flex-shrink-0 relative rounded-2xl overflow-hidden border border-white/5 group cursor-pointer"
             style={{ width: cardW, height: cardH }}
-            onClick={() => {
-              if (!isDragging) onCardClick(photo.id - 1);
+            onPointerDown={(e) => { pointerDownX.current = e.clientX; }}
+            onPointerUp={(e) => {
+              const delta = Math.abs(e.clientX - pointerDownX.current);
+              if (delta < 6 && !isDraggingRef.current) {
+                onCardClick(photo.id - 1);
+              }
             }}
           >
             <Image
@@ -195,7 +223,6 @@ function CarouselRow({
               draggable={false}
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-
             <div
               className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 pointer-events-none"
               style={{
@@ -248,14 +275,30 @@ export default function Gallery() {
             The <span className="text-gradient">Work</span>
           </h2>
           <p className="text-white/35 text-sm max-w-sm mx-auto">
-            Drag to explore · Tap any photo to view it full size.
+            Auto-scrolling · Drag to explore · Tap any photo to view full size.
           </p>
         </motion.div>
       </div>
 
       <div className="flex flex-col gap-3">
-        <CarouselRow items={row1} inView={inView} rowOffset={0}    cardW={CARD_W} cardH={CARD_H} onCardClick={openLightbox} />
-        <CarouselRow items={row2} inView={inView} rowOffset={0.15} cardW={CARD_W} cardH={CARD_H} onCardClick={(i) => openLightbox(i + 29)} />
+        <CarouselRow
+          items={row1}
+          inView={inView}
+          rowOffset={0}
+          cardW={CARD_W}
+          cardH={CARD_H}
+          scrollDirection={-1}
+          onCardClick={openLightbox}
+        />
+        <CarouselRow
+          items={row2}
+          inView={inView}
+          rowOffset={0.1}
+          cardW={CARD_W}
+          cardH={CARD_H}
+          scrollDirection={1}
+          onCardClick={(i) => openLightbox(i + 29)}
+        />
       </div>
 
       <motion.div
