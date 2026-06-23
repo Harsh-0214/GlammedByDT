@@ -6,7 +6,7 @@ import InstagramIcon from "@/components/InstagramIcon";
 export default function Footer() {
   return (
     <footer className="relative border-t border-white/5 py-12 px-6">
-      <div className="max-w-6xl mx-auto">
+      <div className="w-full">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <div className="flex items-center gap-1.5">

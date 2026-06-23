@@ -27,7 +27,7 @@ export default function Hero() {
       <div className="absolute top-1/3 left-[20%] w-80 h-80 rounded-full bg-pink-500/[0.08] blur-[100px] anim-float-slow" />
       <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-purple-500/[0.08] blur-[80px] anim-float" style={{ animationDelay: "2s" }} />
 
-      <div className="relative z-10 text-center max-w-5xl mx-auto">
+      <div className="relative z-10 text-center w-full px-6 sm:px-10 lg:px-16">
         {/* Logo mark */}
         <motion.div
           custom={0}

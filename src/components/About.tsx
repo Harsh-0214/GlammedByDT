@@ -13,7 +13,7 @@ export default function About() {
     <section id="about" className="relative py-16 md:py-32 px-6 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(255,45,120,0.06),transparent)]" />
 
-      <div ref={ref} className="max-w-6xl mx-auto relative z-10">
+      <div ref={ref} className="w-full relative z-10">
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Left: Image placeholder with decorative frame */}
           <motion.div

@@ -229,7 +229,7 @@ export default function Gallery() {
     <section id="gallery" className="relative py-24 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(155,89,182,0.05),transparent)]" />
 
-      <div ref={headerRef} className="max-w-6xl mx-auto px-6 mb-10">
+      <div ref={headerRef} className="w-full px-6 sm:px-10 lg:px-16 mb-10">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

@@ -13,7 +13,7 @@ export default function Contact() {
     <section id="contact" className="relative py-16 md:py-32 px-6 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(255,45,120,0.1),transparent)]" />
 
-      <div ref={ref} className="max-w-6xl mx-auto relative z-10">
+      <div ref={ref} className="w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

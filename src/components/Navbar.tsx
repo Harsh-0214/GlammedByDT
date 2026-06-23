@@ -40,7 +40,7 @@ export default function Navbar() {
       <motion.div
         animate={{ paddingTop: scrolled ? "1rem" : "1.25rem", paddingBottom: scrolled ? "1rem" : "1.25rem" }}
         transition={{ duration: 0.4, ease: EASE }}
-        className="max-w-6xl mx-auto px-6 flex items-center justify-between"
+        className="w-full px-6 sm:px-10 lg:px-16 flex items-center justify-between"
       >
         <a href="#" className="flex items-center gap-3 group" aria-label="GlammedByDT — back to top">
           {/* Logo — animates between 64px (top) and 36px (scrolled) */}
