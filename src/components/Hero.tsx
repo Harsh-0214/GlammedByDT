@@ -78,7 +78,7 @@ export default function Hero() {
           className="text-white/40 italic mb-6"
           style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem, 2.2vw, 1.5rem)", fontWeight: 300 }}
         >
-          Nail Artistry &amp; Glam
+          Nail Artistry
         </motion.p>
 
         {/* Decorative rule */}
@@ -142,7 +142,7 @@ export default function Hero() {
           className="mt-20 flex flex-wrap items-center justify-center gap-6 sm:gap-14"
         >
           {[
-            { value: "500+", label: "Happy Clients" },
+            { value: "1000+", label: "Happy Clients" },
             { value: "100%", label: "Handcrafted" },
             { value: "5★",   label: "Rated" },
           ].map((stat) => (

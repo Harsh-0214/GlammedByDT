@@ -26,6 +26,27 @@ const testimonials = [
     rating: 5,
     avatar: "P",
   },
+  {
+    name: "Simone R.",
+    handle: "@simone.beautyx",
+    text: "I came in with a Pinterest pic thinking it was too complicated — she did it better than the original. Absolutely obsessed with my set every single time 🤩",
+    rating: 5,
+    avatar: "S",
+  },
+  {
+    name: "Fatima A.",
+    handle: "@fatima.nailsx",
+    text: "DT is so talented and makes you feel so comfortable the whole time. My nails have never looked this good. Already booked my next appointment!",
+    rating: 5,
+    avatar: "F",
+  },
+  {
+    name: "Chloe W.",
+    handle: "@chloew.glam",
+    text: "Been going to DT for over a year now and I will never switch. She's fast, precise, and the designs are always better than I imagined. 10/10 every time 💗",
+    rating: 5,
+    avatar: "C",
+  },
 ];
 
 export default function Testimonials() {
@@ -56,7 +77,7 @@ export default function Testimonials() {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
