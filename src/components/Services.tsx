@@ -4,61 +4,34 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Sparkles } from "lucide-react";
 
-const services = [
-  {
-    emoji: "✨",
-    name: "Custom Nail Art",
-    description:
-      "One-of-a-kind designs tailored to your style — florals, gems, chrome, ombre, and beyond.",
-    price: "From $65",
-    popular: true,
-    gradient: "from-pink-500/20 to-purple-500/10",
-  },
-  {
-    emoji: "💎",
-    name: "Acrylic Extensions",
-    description:
-      "Strong, beautiful extensions with a flawless finish. Perfect length and shape every time.",
-    price: "From $75",
-    popular: false,
-    gradient: "from-pink-500/10 to-pink-500/20",
-  },
-  {
-    emoji: "🌸",
-    name: "Gel Manicure",
-    description:
-      "Long-lasting gel polish that stays chip-free for weeks, with a glossy salon finish.",
-    price: "From $45",
-    popular: false,
-    gradient: "from-purple-500/10 to-pink-500/10",
-  },
-  {
-    emoji: "🦋",
-    name: "Nail Prep & Fill",
-    description:
-      "Maintain your set with a professional fill and clean-up. Keep those nails looking fresh.",
-    price: "From $55",
-    popular: false,
-    gradient: "from-pink-500/15 to-rose-500/10",
-  },
-  {
-    emoji: "👑",
-    name: "Full Set with Design",
-    description:
-      "Complete transformation — full set of acrylics or gel with your choice of custom art.",
-    price: "From $90",
-    popular: false,
-    gradient: "from-amber-500/10 to-pink-500/15",
-  },
-  {
-    emoji: "🌟",
-    name: "Spa Manicure",
-    description:
-      "The ultimate nail pampering experience with exfoliation, massage, and polish.",
-    price: "From $55",
-    popular: false,
-    gradient: "from-pink-400/10 to-purple-400/10",
-  },
+const lengths = [
+  { name: "Short", price: "$45" },
+  { name: "Medium", price: "$50" },
+  { name: "Long", price: "$55" },
+  { name: "XL", price: "$60" },
+];
+
+const addOns = [
+  { name: "French", price: "+$1.50/nail" },
+  { name: "Ombre + Encapsulation", price: "+$2.00/nail" },
+  { name: "Airbrush", price: "+$1.50/nail" },
+  { name: "Drawn Flower", price: "+$1–3/nail" },
+  { name: "Sculpted Flower", price: "+$3–5/nail" },
+  { name: "Glitter", price: "+$1.00/nail" },
+  { name: "Cat Eye", price: "+$1.50/nail" },
+  { name: "V Cut", price: "+$1.50/nail" },
+  { name: "Rhinestone", price: "+$0.25 each" },
+  { name: "Charm", price: "+$3.00 each" },
+  { name: "Chrome (whole nail)", price: "+$1.50/nail" },
+  { name: "Chrome Design", price: "+$2.50/nail" },
+  { name: "Marble", price: "+$1.50/nail" },
+  { name: "Gold Flake", price: "+$1.50/nail" },
+];
+
+const policies = [
+  { label: "Squeeze-In Fee", value: "+$10" },
+  { label: "Late Fee (after 15 min)", value: "+$15" },
+  { label: "Refills", value: "$5 off your total" },
 ];
 
 export default function Services() {
@@ -69,7 +42,7 @@ export default function Services() {
     <section id="services" className="relative py-16 md:py-32 px-6 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(255,45,120,0.05),transparent)]" />
 
-      <div ref={ref} className="w-full relative z-10">
+      <div ref={ref} className="max-w-4xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -80,72 +53,139 @@ export default function Services() {
           <div className="flex items-center justify-center gap-2 mb-4">
             <Sparkles className="w-4 h-4 text-pink-400" />
             <span className="text-pink-400 text-sm font-medium tracking-wide uppercase">
-              Services
+              Services & Pricing
             </span>
             <Sparkles className="w-4 h-4 text-pink-400" />
           </div>
-          <h2 className="text-white mb-4" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.2rem,4.5vw,3.4rem)", fontWeight: 300, letterSpacing: "-0.01em" }}>
+          <h2
+            className="text-white mb-4"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(2.2rem,4.5vw,3.4rem)",
+              fontWeight: 300,
+              letterSpacing: "-0.01em",
+            }}
+          >
             Choose Your{" "}
             <span className="text-gradient">Glam</span>
           </h2>
           <p className="text-white/40 text-base max-w-md mx-auto">
-            Every service is delivered with care, precision, and that extra touch
-            of luxury you deserve.
+            Every service is delivered with care, precision, and that extra touch of luxury you deserve.
           </p>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {services.map((service, i) => (
-            <motion.div
-              key={service.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.6,
-                delay: i * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className={`relative group p-6 rounded-2xl border cursor-default
-                ${service.popular
-                  ? "border-pink-500/50 bg-gradient-to-br from-pink-500/15 to-purple-500/10"
-                  : "border-white/5 bg-white/[0.02]"
-                }`}
-              style={{ transition: "border-color 200ms ease-out, background-color 200ms ease-out" }}
-            >
-              {service.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-pink-500 text-white text-xs font-semibold">
-                  Most Popular
-                </div>
-              )}
-
-              <div className="text-3xl mb-4">{service.emoji}</div>
-              <h3 className="text-white font-semibold text-lg mb-2">{service.name}</h3>
-              <p className="text-white/40 text-sm leading-relaxed mb-4">
-                {service.description}
-              </p>
-              <div className="flex items-center justify-between">
-                <span className="text-pink-400 font-bold">{service.price}</span>
-                <a
-                  href="#contact"
-                  className="text-xs text-white/30 font-medium"
-                  style={{ transition: "color 150ms ease-out" }}
+        {/* Overlay + Lengths */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-6"
+        >
+          <div className="rounded-2xl border border-pink-500/30 bg-gradient-to-br from-pink-500/10 to-purple-500/5 p-6">
+            <div className="flex items-center gap-2 mb-5">
+              <span className="text-2xl">✨</span>
+              <h3 className="text-white font-semibold text-lg">Overlay</h3>
+              <span className="ml-auto text-xs text-white/40">starting at $45</span>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {lengths.map((len) => (
+                <div
+                  key={len.name}
+                  className="rounded-xl border border-white/8 bg-white/[0.03] p-4 text-center"
                 >
-                  Book →
-                </a>
+                  <p className="text-white/60 text-xs mb-1">{len.name}</p>
+                  <p className="text-pink-400 font-bold text-lg">{len.price}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Removals */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-6"
+        >
+          <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-6">
+            <div className="flex items-center gap-2 mb-5">
+              <span className="text-2xl">🪄</span>
+              <h3 className="text-white font-semibold text-lg">Removals</h3>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="rounded-xl border border-white/8 bg-white/[0.03] p-4 flex items-center justify-between">
+                <p className="text-white/70 text-sm">My Work</p>
+                <p className="text-pink-400 font-bold">$15</p>
               </div>
-            </motion.div>
-          ))}
-        </div>
+              <div className="rounded-xl border border-white/8 bg-white/[0.03] p-4 flex items-center justify-between">
+                <p className="text-white/70 text-sm">Foreign Nails</p>
+                <p className="text-pink-400 font-bold">$20</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Add-Ons */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-6"
+        >
+          <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-6">
+            <div className="flex items-center gap-2 mb-5">
+              <span className="text-2xl">💅</span>
+              <h3 className="text-white font-semibold text-lg">Add-Ons</h3>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {addOns.map((item) => (
+                <div
+                  key={item.name}
+                  className="rounded-xl border border-white/6 bg-white/[0.02] px-3 py-3 flex items-center justify-between gap-2"
+                >
+                  <p className="text-white/60 text-xs">{item.name}</p>
+                  <p className="text-pink-400 font-semibold text-xs whitespace-nowrap">{item.price}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Policies */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.34, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-8"
+        >
+          <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-6">
+            <div className="flex items-center gap-2 mb-5">
+              <span className="text-2xl">📋</span>
+              <h3 className="text-white font-semibold text-lg">Policies & Fees</h3>
+            </div>
+            <div className="flex flex-col gap-2">
+              {policies.map((p) => (
+                <div
+                  key={p.label}
+                  className="rounded-xl border border-white/6 bg-white/[0.02] px-4 py-3 flex items-center justify-between"
+                >
+                  <p className="text-white/60 text-sm">{p.label}</p>
+                  <p className="text-pink-400 font-semibold text-sm">{p.value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
 
         {/* Note */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.7, duration: 0.6 }}
-          className="text-center text-white/30 text-sm mt-8"
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="text-center text-white/30 text-sm"
         >
-          Prices vary by design complexity. DM for a custom quote. 💕
+          Prices may vary based on design complexity. DM for a custom quote. 💕
         </motion.p>
       </div>
     </section>
