@@ -27,7 +27,7 @@ const bebasNeue = Bebas_Neue({
 export const metadata: Metadata = {
   title: "GlammedByDT — Nail Artistry & Glam",
   description:
-    "Premium nail artistry by DT. Custom nail art and acrylic extensions. Based in the GTA — Brampton (Wanless & Chinguacousy area). Book your appointment today.",
+    "Premium nail artistry by Diya Tamakuwala. Custom nail art and acrylic extensions. Based in the GTA — Brampton (Wanless & Chinguacousy area). Book your appointment today.",
   keywords: ["nail technician", "nail art", "acrylic nails", "acrylic extensions", "brampton nail tech", "gta nail tech", "wanless", "chinguacousy", "glammedbydt"],
   openGraph: {
     title: "GlammedByDT — Nail Artistry & Glam",

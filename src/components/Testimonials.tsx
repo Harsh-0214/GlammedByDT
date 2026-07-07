@@ -8,7 +8,7 @@ const testimonials = [
   {
     name: "Aaliyah M.",
     handle: "@aaliyah.marie",
-    text: "DT is genuinely the best nail tech I've ever been to. My sets always last 3+ weeks and the designs are literally art. Will never go anywhere else 💕",
+    text: "Diya Tamakuwala is genuinely the best nail tech I've ever been to. My sets always last 3+ weeks and the designs are literally art. Will never go anywhere else 💕",
     rating: 5,
     avatar: "A",
   },
@@ -36,14 +36,14 @@ const testimonials = [
   {
     name: "Fatima A.",
     handle: "@fatima.ahmed",
-    text: "DT is so talented and makes you feel so comfortable the whole time. My nails have never looked this good. Already booked my next appointment!",
+    text: "Diya Tamakuwala is so talented and makes you feel so comfortable the whole time. My nails have never looked this good. Already booked my next appointment!",
     rating: 5,
     avatar: "F",
   },
   {
     name: "Chloe W.",
     handle: "@chloe.wilson",
-    text: "Been going to DT for over a year now and I will never switch. She's fast, precise, and the designs are always better than I imagined. 10/10 every time 💗",
+    text: "Been going to Diya Tamakuwala for over a year now and I will never switch. She's fast, precise, and the designs are always better than I imagined. 10/10 every time 💗",
     rating: 5,
     avatar: "C",
   },

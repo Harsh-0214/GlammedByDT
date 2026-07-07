@@ -88,7 +88,7 @@ export default function About() {
             </h2>
 
             <p className="text-white/50 text-base leading-relaxed mb-6">
-              Hi, I&apos;m DT — a passionate nail technician dedicated to creating
+              Hi, I&apos;m Diya Tamakuwala — a passionate nail technician dedicated to creating
               stunning, long-lasting nail art that expresses your unique personality.
               From minimalist chic to bold statement sets, I bring your vision to life
               with precision and love.
