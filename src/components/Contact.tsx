@@ -73,8 +73,8 @@ export default function Contact() {
               {
                 icon: MapPin,
                 title: "Location",
-                value: "Based in Toronto",
-                sub: "Home studio — clean & cozy",
+                value: "Based in the GTA",
+                sub: "Brampton — clean & cozy home studio",
                 href: null,
                 cta: null,
               },

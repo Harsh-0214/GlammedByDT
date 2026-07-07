@@ -100,11 +100,10 @@ export default function About() {
               see why clients keep coming back for more.
             </p>
 
-            <div className="grid grid-cols-3 gap-3 sm:gap-6">
+            <div className="grid grid-cols-2 gap-3 sm:gap-6">
               {[
                 { icon: "✨", label: "Nail Art", sub: "Custom designs" },
-                { icon: "💎", label: "Extensions", sub: "Acrylic & gel" },
-                { icon: "🌸", label: "Nail Care", sub: "Manicures" },
+                { icon: "💎", label: "Extensions", sub: "Acrylic only" },
               ].map((item) => (
                 <div
                   key={item.label}
