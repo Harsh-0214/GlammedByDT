@@ -237,7 +237,6 @@ export default function Services() {
             <div className="flex flex-col gap-3">
               {[
                 { label: "Squeeze-In Fee", value: "+$10" },
-                { label: "Late Fee", sub: "after 15 min", value: "+$15" },
                 { label: "Refills", value: "$5 off your total" },
               ].map((p) => (
                 <div
@@ -245,18 +244,58 @@ export default function Services() {
                   className="rounded-xl border border-white/6 bg-white/[0.02] px-5 py-4 flex items-center justify-between hover:border-pink-500/25"
                   style={{ transition: "border-color 200ms ease-out" }}
                 >
-                  <div>
-                    <span className="text-white/55 text-sm">{p.label}</span>
-                    {p.sub && (
-                      <span className="text-white/25 text-xs ml-2">({p.sub})</span>
-                    )}
-                  </div>
+                  <span className="text-white/55 text-sm">{p.label}</span>
                   <span
                     className="text-pink-400/90 font-medium"
                     style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem", fontWeight: 400 }}
                   >
                     {p.value}
                   </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        <SectionDivider />
+
+        {/* ── Policy ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.35, ease: EASE }}
+        >
+          <div className="rounded-2xl border border-white/6 bg-white/[0.015] p-6 md:p-8">
+            <h3
+              className="text-white/90 mb-6"
+              style={{ fontFamily: "var(--font-display)", fontSize: "1.7rem", fontWeight: 300, letterSpacing: "0.03em" }}
+            >
+              Policy
+            </h3>
+            <div className="flex flex-col gap-5">
+              {[
+                {
+                  label: "Extensions",
+                  text: "A $10 deposit is required upon booking. If it isn't sent within 24 hours, I'll unfortunately no longer hold your appointment. The remaining balance can be paid in exact cash or e-transfer.",
+                },
+                {
+                  label: "Cancellations",
+                  text: "Please cancel at least 48 hours before your appointment — no fee either way.",
+                },
+                {
+                  label: "Running Late",
+                  text: "Let me know if you're running behind. If you arrive more than 25 minutes late, the appointment will be cancelled — no fee.",
+                },
+              ].map((p) => (
+                <div
+                  key={p.label}
+                  className="rounded-xl border border-white/6 bg-white/[0.02] px-5 py-4 hover:border-pink-500/25"
+                  style={{ transition: "border-color 200ms ease-out" }}
+                >
+                  <span className="text-pink-400/90 text-sm font-semibold tracking-wide uppercase">
+                    {p.label}
+                  </span>
+                  <p className="text-white/50 text-sm leading-relaxed mt-2">{p.text}</p>
                 </div>
               ))}
             </div>
