@@ -55,7 +55,7 @@ export default function Footer() {
         <div className="mt-8 pt-6 border-t border-white/[0.03] flex flex-col md:flex-row items-center justify-between gap-3 text-white/20 text-xs">
           <span>© {new Date().getFullYear()} GlammedByDT. All rights reserved.</span>
           <span className="flex items-center gap-1">
-            Made with <span className="text-pink-400">♥</span> for DT
+            Made with <span className="text-pink-400">♥</span> for Diya Tamakuwala
           </span>
         </div>
       </div>
